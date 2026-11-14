@@ -1,0 +1,19 @@
+name = "doviz-bot"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Her 5 dakikada bir fiyatları kontrol et
+[triggers]
+crons = ["*/5 * * * *"]
+
+[observability]
+enabled = true
+
+# Uyarıların saklandığı küçük veritabanı (ek kurulum gerektirmez)
+[[durable_objects.bindings]]
+name = "STORE"
+class_name = "Store"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Store"]
